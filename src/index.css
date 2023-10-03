@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.darkTheme {
+  color: #f0f0f0;
+  background-color: #221e22;
+}
+
+.lightTheme {
+  color: #221e22;
+  background-color: #f0f0f0;
+}
