@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="font-sans">
+    <div className="font-sans h-screen">
       <Nav />
       <Outlet />
     </div>

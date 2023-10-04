@@ -4,20 +4,31 @@ import TaskItem from "./TaskItem";
 import { IoIosAddCircle } from "react-icons/io";
 import { IoFilterCircleSharp } from "react-icons/io5";
 
-const TaskContainer = () => {
+const TaskContainer = ({ theme, tasks }) => {
   return (
-    <div className="mx-auto pb-3 text-center w-4/5 bg-gray-600 rounded overflow-hidden">
-      <div className="list-header p-3 bg-gray-800 flex justify-between items-center">
+    <div
+      className={`mx-auto pb-3 text-center w-4/5 ${theme}Theme bg-gray-500/50 drop-shadow-md rounded-lg overflow-hidden`}
+    >
+      <div
+        className={`list-header px-3 py-5 ${theme}Theme flex justify-between items-center`}
+      >
         <h1 className="font-medium text-xl mx-auto pl-14">
           Your tasks for today
         </h1>
         <div className="icons flex">
-          <IoIosAddCircle size={25} />
-          <IoFilterCircleSharp size={25} />
+          <IoIosAddCircle className="fill-green-400 cursor-pointer" size={25} />
+          <IoFilterCircleSharp
+            className="ml-1 fill-blue-400 cursor-pointer"
+            size={25}
+          />
         </div>
       </div>
-      <div className="task-list">
-        <TaskItem />
+      <div className="task-list py-3">
+        {tasks
+          ? tasks.map((task) => (
+              <TaskItem task={task} key={task.id} theme={theme} />
+            ))
+          : null}
       </div>
     </div>
   );

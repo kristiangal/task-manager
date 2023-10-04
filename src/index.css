@@ -2,12 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 .darkTheme {
   color: #f0f0f0;
   background-color: #221e22;
 }
 
+.darkTheme.mainBg {
+  background-color: #2d2c2d;
+}
+
 .lightTheme {
   color: #221e22;
   background-color: #f0f0f0;
+}
+
+.lightTheme.mainBg {
+  background-color: #d0d0d0;
 }
