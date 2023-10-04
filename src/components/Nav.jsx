@@ -13,7 +13,7 @@ const Nav = () => {
 
   return (
     <nav
-      className={`h-10 px-10 py-12 flex justify-between items-center ${theme}Theme drop-shadow`}
+      className={`h-10 px-10 py-12 flex justify-between items-center ${theme}Theme drop-shadow transition-all duration-300`}
     >
       <h1 className="font-medium">MyTaskManager</h1>
       <div
