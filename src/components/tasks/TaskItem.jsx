@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+
 import {
   AiFillCheckCircle,
   AiFillDelete,
   AiFillCloseCircle,
 } from "react-icons/ai";
+import { CgDanger } from "react-icons/cg";
+
+import Tag from "../Tag";
 
 const TaskItem = ({ theme, task }) => {
   return (
@@ -13,12 +17,17 @@ const TaskItem = ({ theme, task }) => {
       } drop-shadow`}
     >
       <div className="main-section text-left">
-        <h3 className="text-lg font-medium">{task.name}</h3>
-        <p className="text-sm text-medium text-gray-400 py-1">22/12/2023</p>
-        <div className="tags flex">
-          <div className="tag">Work</div>
-          <div className="tag">Easy</div>
-          <div className="tag">Tech</div>
+        <h3 className="text-lg font-medium flex items-center">
+          {task.isImportant ? (
+            <CgDanger size={30} className="inline mr-2 text-red-500" />
+          ) : null}{" "}
+          {" " + task.name}
+        </h3>
+        <p className="text-sm text-medium text-gray-400 py-2">{task.date}</p>
+        <div className="tags py-1 flex max-w-md overflow-x-auto">
+          {task.tags
+            ? task.tags.map((tag) => <Tag text={tag.text} color={tag.color} />)
+            : null}
         </div>
       </div>
       <div className="actions flex">

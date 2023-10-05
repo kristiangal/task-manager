@@ -1,13 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 const initialState = {
   tasks: [
     {
       id: uuidv4(),
       name: "Napisat majitelovi bytu email",
-      date: new Date(),
-      tags: [{ name: "Work", color: "yellow" }],
+      date: moment(new Date()).format("DD/MM/YYYY"),
+      tags: [
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+        { text: "Work", color: "yellow" },
+      ],
       isImportant: true,
       isDone: false,
     },
