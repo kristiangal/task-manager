@@ -4,7 +4,16 @@ import TaskItem from "./TaskItem";
 import { IoIosAddCircle } from "react-icons/io";
 import { IoFilterCircleSharp } from "react-icons/io5";
 
+import { useDispatch } from "react-redux";
+import { toggleModal } from "../../features/modalSlice";
+
 const TaskContainer = ({ theme, tasks }) => {
+  const dispatch = useDispatch();
+
+  const handleShowModal = () => {
+    dispatch(toggleModal());
+  };
+
   return (
     <div
       className={`mx-auto pb-3 text-center w-4/5 ${theme}Theme bg-gray-500/50 drop-shadow-md rounded-lg overflow-hidden`}
@@ -16,7 +25,11 @@ const TaskContainer = ({ theme, tasks }) => {
           Your tasks for today
         </h1>
         <div className="icons flex">
-          <IoIosAddCircle className="fill-green-400 cursor-pointer" size={25} />
+          <IoIosAddCircle
+            className="fill-green-400 cursor-pointer"
+            size={25}
+            onClick={handleShowModal}
+          />
           <IoFilterCircleSharp
             className="ml-1 fill-blue-400 cursor-pointer"
             size={25}

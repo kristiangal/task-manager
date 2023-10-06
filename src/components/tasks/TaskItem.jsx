@@ -26,7 +26,9 @@ const TaskItem = ({ theme, task }) => {
         <p className="text-sm text-medium text-gray-400 py-2">{task.date}</p>
         <div className="tags py-1 flex max-w-md overflow-x-auto">
           {task.tags
-            ? task.tags.map((tag) => <Tag text={tag.text} color={tag.color} />)
+            ? task.tags.map((tag) => (
+                <Tag key={tag.text} text={tag.text} color={tag.color} />
+              ))
             : null}
         </div>
       </div>

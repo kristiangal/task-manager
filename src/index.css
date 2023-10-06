@@ -24,3 +24,7 @@
 .lightTheme.mainBg {
   background-color: #d0d0d0;
 }
+
+label {
+  color: rgb(119, 119, 119);
+}
