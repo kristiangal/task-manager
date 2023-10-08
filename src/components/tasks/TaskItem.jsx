@@ -12,7 +12,7 @@ import Tag from "../Tag";
 const TaskItem = ({ theme, task }) => {
   return (
     <div
-      className={`flex items-center justify-between py-3 px-5 w-11/12 mx-auto rounded-md ${
+      className={`flex items-center justify-between py-3 px-5 mb-3 w-11/12 mx-auto rounded-md ${
         theme === "light" ? "bg-white" : "darkTheme mainBg"
       } drop-shadow`}
     >
@@ -27,7 +27,7 @@ const TaskItem = ({ theme, task }) => {
         <div className="tags py-1 flex max-w-md overflow-x-auto">
           {task.tags
             ? task.tags.map((tag) => (
-                <Tag key={tag.text} text={tag.text} color={tag.color} />
+                <Tag key={tag.label} text={tag.label} color={tag.color} />
               ))
             : null}
         </div>

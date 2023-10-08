@@ -3,16 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 const initialState = {
-  tasks: [
-    {
-      id: uuidv4(),
-      name: "Napisat majitelovi bytu email",
-      date: moment(new Date()).format("DD/MM/YYYY"),
-      tags: [{ text: "Work", color: "yellow" }],
-      isImportant: true,
-      isDone: false,
-    },
-  ],
+  tasks: localStorage.getItem("tasks")
+    ? JSON.parse(localStorage.getItem("tasks"))
+    : [],
 };
 
 export const taskSlice = createSlice({
@@ -20,16 +13,20 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      const { name, date, tags, isImportant, isDone } = action.task;
+      console.log(action);
+      console.log(action.task);
+      const { name, date, tags, isImportant, isDone } = action.payload.task;
+
       const taskToAdd = {
         id: uuidv4(),
         name,
-        date,
+        date: moment(date).format("DD/MM/YYYY"),
         tags,
         isImportant,
         isDone,
       };
       state.tasks.push(taskToAdd);
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     removeTask: (state, action) => {
       const { id } = action;

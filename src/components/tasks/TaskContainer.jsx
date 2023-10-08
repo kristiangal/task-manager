@@ -37,11 +37,26 @@ const TaskContainer = ({ theme, tasks }) => {
         </div>
       </div>
       <div className="task-list py-3">
-        {tasks
-          ? tasks.map((task) => (
-              <TaskItem task={task} key={task.id} theme={theme} />
-            ))
-          : null}
+        {tasks.length ? (
+          tasks.map((task) => (
+            <TaskItem task={task} key={task.id} theme={theme} />
+          ))
+        ) : (
+          <div>
+            <h1 className="text-xl font-medium">
+              You didn't create a task yet 😊
+            </h1>
+            <p className="text-lg text-gray-400 py-2">
+              Start with creating your first task of the day!
+            </p>
+            <button
+              onClick={handleShowModal}
+              className="flex items-center mx-auto mt-2 bg-green-400 hover:bg-green-500 transition-all duration-300 text-white rounded py-1 px-2"
+            >
+              <IoIosAddCircle className="fill-white mr-1" size={20} /> Add Task
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
