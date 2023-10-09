@@ -7,16 +7,26 @@ import moment from "moment";
 import { tasks } from "../data/tasks";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleModal } from "../features/modalSlice";
-import { addTask } from "../features/taskSlice";
+import { addTask, removeTask } from "../features/taskSlice";
 
-const Modal = ({ bodyType, theme }) => {
+import { toast } from "react-toastify";
+
+const Modal = ({ theme }) => {
   const [taskName, setTaskName] = useState("");
   const [taskIsImportant, setTaskIsImportant] = useState(false);
   const [taskTags, setTaskTags] = useState([]);
 
   const dispatch = useDispatch();
 
-  const { isOpen } = useSelector((state) => state.modal);
+  const { isOpen, bodyType, selectedTask } = useSelector(
+    (state) => state.modal
+  );
+
+  const resetInputs = () => {
+    setTaskName("");
+    setTaskTags([]);
+    setTaskIsImportant(false);
+  };
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -27,19 +37,23 @@ const Modal = ({ bodyType, theme }) => {
       isImportant: taskIsImportant,
       isDone: false,
     };
-
-    console.log(taskToAdd);
-
     dispatch(addTask({ task: taskToAdd }));
     dispatch(toggleModal());
+    toast.success("Task succesfully added!");
+    resetInputs();
+  };
+
+  const handleDeleteTask = (e, id) => {
+    e.preventDefault();
+    dispatch(removeTask({ id: selectedTask }));
+    dispatch(toggleModal());
+    resetInputs();
+    toast.success("Task succesfully deleted!");
   };
 
   const bodyTypes = {
     addTask: (
-      <form
-        onSubmit={handleAddTask}
-        className={`${theme}Theme py-3 px-5 w-3/4 rounded text-center`}
-      >
+      <>
         <h1 className="text-xl font-medium pb-3">Add task</h1>
         <div className="input-groups grid grid-rows-1 grid-cols-2 gap-10 text-left">
           <div className="form-group flex flex-col">
@@ -99,14 +113,39 @@ const Modal = ({ bodyType, theme }) => {
             Close
           </button>
         </div>
-      </form>
+      </>
+    ),
+    confirmDelete: (
+      <div>
+        <h1 className="text-lg font-medium mb-3">Delete this task?</h1>
+        <div className="actions">
+          <button
+            onClick={(e) => handleDeleteTask(e, selectedTask)}
+            className="py-1 px-3 bg-green-400 text-white rounded mr-1"
+          >
+            Yes
+          </button>
+          <button
+            className="py-1 px-3 bg-red-400 text-white rounded ml-1"
+            type="button"
+            onClick={() => dispatch(toggleModal())}
+          >
+            No
+          </button>
+        </div>
+      </div>
     ),
   };
 
   if (isOpen) {
     return (
       <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-10 flex justify-center items-center">
-        {bodyTypes[bodyType]}
+        <form
+          onSubmit={bodyType === "addTask" ? handleAddTask : handleDeleteTask}
+          className={`${theme}Theme py-3 px-5 w-3/4 rounded text-center`}
+        >
+          {bodyTypes[bodyType]}
+        </form>
       </div>
     );
   }

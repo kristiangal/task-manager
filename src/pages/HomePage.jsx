@@ -19,7 +19,6 @@ const HomePage = () => {
   }, []);
   return (
     <>
-      <Modal theme={theme} bodyType={"addTask"} />
       <main
         className={`${theme}Theme mainBg h-full transition-all duration-300`}
       >
@@ -42,6 +41,7 @@ const HomePage = () => {
         </div>
         <TaskContainer tasks={tasks} theme={theme} />
       </main>
+      <Modal theme={theme} />
     </>
   );
 };

@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
+  bodyType: "addTask",
+  selectedTask: null,
 };
 
 export const modalSlice = createSlice({
@@ -11,8 +13,14 @@ export const modalSlice = createSlice({
     toggleModal: (state) => {
       state.isOpen = !state.isOpen;
     },
+    setBodyType: (state, action) => {
+      state.bodyType = action.payload.bodytype;
+    },
+    setSelectedTask: (state, action) => {
+      state.selectedTask = action.payload.task;
+    },
   },
 });
 
-export const { toggleModal } = modalSlice.actions;
+export const { toggleModal, setBodyType, setSelectedTask } = modalSlice.actions;
 export default modalSlice.reducer;
