@@ -11,11 +11,16 @@ import {
 import store from "./app/store.js";
 import { Provider } from "react-redux";
 import "./index.css";
+import LoginPage from "./pages/LoginPage.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="/" element={<HomePage />} />
+    <Route element={<App />}>
+      <Route path="/login" element={<LoginPage />}></Route>
+      <Route element={<PrivateRoute />}>
+        <Route path="/" element={<HomePage />} />
+      </Route>
     </Route>
   )
 );

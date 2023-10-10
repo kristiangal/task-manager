@@ -29,6 +29,7 @@ export const taskSlice = createSlice({
     removeTask: (state, action) => {
       const { id } = action.payload;
       state.tasks = state.tasks.filter((task) => task.id !== id);
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     toggleCompleted: (state, action) => {
       const { id } = action.payload;
