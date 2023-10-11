@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { theme } = useSelector((state) => state.theme);
+  const { user } = useSelector((state) => state.user);
   const [username, setUsername] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, []);
+
   const handleSetUser = (e) => {
     e.preventDefault();
-    dispatch(setUser({ user: { name: username } }));
+    dispatch(setUser({ name: username }));
     navigate("/");
   };
 
