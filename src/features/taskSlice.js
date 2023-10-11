@@ -41,9 +41,14 @@ export const taskSlice = createSlice({
       });
       state.tasks = updatedTasks;
     },
+    clearTasks: (state) => {
+      state.tasks = [];
+      localStorage.removeItem("tasks");
+    },
   },
 });
 
-export const { addTask, removeTask, toggleCompleted } = taskSlice.actions;
+export const { addTask, removeTask, toggleCompleted, clearTasks } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
