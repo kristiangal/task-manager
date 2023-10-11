@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import { clearTasks } from "../features/taskSlice";
+import { createSession } from "../utils/sessionManager";
 
 const LoginPage = () => {
   const { theme } = useSelector((state) => state.theme);
@@ -21,9 +22,7 @@ const LoginPage = () => {
   const handleSetUser = (e) => {
     e.preventDefault();
     dispatch(setUser({ name: username }));
-    if (username !== JSON.parse(localStorage.getItem("lastUser"))) {
-      dispatch(clearTasks());
-    }
+    createSession(username);
     navigate("/");
   };
 

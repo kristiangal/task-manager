@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { changeTheme } from "../features/themeSlice.js";
 import { logoutUser } from "../features/userSlice.js";
 import { clearTasks } from "../features/taskSlice.js";
+import { saveSession } from "../utils/sessionManager.js";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Nav = () => {
 
   const { theme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
+  const { tasks } = useSelector((state) => state.task);
 
   const handleThemeChange = (e) => {
     dispatch(changeTheme());
@@ -20,8 +22,9 @@ const Nav = () => {
 
   const handleLogoutUser = () => {
     navigate("/login");
-    localStorage.setItem("lastUser", JSON.stringify(user));
+    saveSession(user, tasks);
     dispatch(logoutUser());
+    dispatch(clearTasks());
   };
 
   return (

@@ -2,12 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getFromLocalStorage } from "../features/taskSlice";
 
 import TaskContainer from "../components/tasks/TaskContainer";
 import Modal from "../components/Modal";
 
 const HomePage = () => {
   const [time, setTime] = useState(new Date());
+  const dispatch = useDispatch();
 
   const { theme } = useSelector((state) => state.theme);
   const { tasks } = useSelector((state) => state.task);
@@ -16,6 +19,15 @@ const HomePage = () => {
   const date = new Date().toLocaleDateString();
   useEffect(() => {
     setInterval(() => setTime(new Date()), 1000);
+    if (localStorage.getItem("sessions")) {
+      const currentUserSession = JSON.parse(
+        localStorage.getItem("sessions")
+      ).find((session) => session.name === user);
+      if (currentUserSession) {
+        localStorage.setItem("tasks", JSON.stringify(currentUserSession.tasks));
+        dispatch(getFromLocalStorage());
+      }
+    }
   }, []);
   return (
     <>
