@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { clearTasks } from "../features/taskSlice";
 
 const LoginPage = () => {
   const { theme } = useSelector((state) => state.theme);
@@ -20,16 +21,19 @@ const LoginPage = () => {
   const handleSetUser = (e) => {
     e.preventDefault();
     dispatch(setUser({ name: username }));
+    if (username !== JSON.parse(localStorage.getItem("lastUser"))) {
+      dispatch(clearTasks());
+    }
     navigate("/");
   };
 
   return (
     <div
-      className={`${theme}Theme mainBg flex flex-col h-screen py-16 px-32 transition-all duration-300`}
+      className={`${theme}Theme mainBg flex flex-col h-screen py-16 transition-all duration-300`}
     >
       <form
         onSubmit={(e) => handleSetUser(e)}
-        className={`${theme}Theme w-full text-center py-12 rounded-lg mt-6 transition-all duration-300`}
+        className={`${theme}Theme mx-auto xs:w-12/12 sm:w-11/12 md:w-10/12 lg:w-8/12 text-center py-12 rounded-lg mt-6 transition-all duration-300`}
       >
         <div className="text text-center">
           <h1 className="text-2xl font-medium">

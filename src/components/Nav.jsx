@@ -20,8 +20,8 @@ const Nav = () => {
 
   const handleLogoutUser = () => {
     navigate("/login");
+    localStorage.setItem("lastUser", JSON.stringify(user));
     dispatch(logoutUser());
-    dispatch(clearTasks());
   };
 
   return (
