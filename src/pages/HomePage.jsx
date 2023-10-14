@@ -19,6 +19,9 @@ const HomePage = () => {
   const date = new Date().toLocaleDateString();
   useEffect(() => {
     setInterval(() => setTime(new Date()), 1000);
+    if (localStorage.getItem("tasks")) {
+      return;
+    }
     if (localStorage.getItem("sessions")) {
       const currentUserSession = JSON.parse(
         localStorage.getItem("sessions")
@@ -35,16 +38,18 @@ const HomePage = () => {
         className={`${theme}Theme mainBg h-full transition-all duration-300`}
       >
         <div className="info-section text-center py-5">
-          <h1 className="text-2xl font-semibold">Hey there, {user}!</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold">
+            Hey there, {user}!
+          </h1>
           <h2
-            className={`text-lg py-2 font-medium ${
+            className={`text-md sm:text-lg py-2 font-medium ${
               theme === "light" ? "text-gray-600" : "text-gray-400"
             }`}
           >
             {date}
           </h2>
           <h2
-            className={`font-medium ${
+            className={`font-medium text-sm sm:text-md ${
               theme === "light" ? "text-gray-600" : "text-gray-400"
             }`}
           >

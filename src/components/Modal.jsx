@@ -55,7 +55,7 @@ const Modal = ({ theme }) => {
     addTask: (
       <>
         <h1 className="text-xl font-medium pb-3">Add task</h1>
-        <div className="input-groups grid grid-rows-1 grid-cols-2 gap-10 text-left">
+        <div className="input-groups grid grid-rows-auto md:grid-rows-1 grid-cols-1 md:grid-cols-2 gap-10 text-left">
           <div className="form-group flex flex-col">
             <label htmlFor="task-name" className="pb-2 text-sm">
               Task name
@@ -142,7 +142,7 @@ const Modal = ({ theme }) => {
       <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-10 flex justify-center items-center">
         <form
           onSubmit={bodyType === "addTask" ? handleAddTask : handleDeleteTask}
-          className={`${theme}Theme py-3 px-5 w-3/4 rounded text-center`}
+          className={`${theme}Theme py-3 px-5 w-full sm:w-3/4 rounded text-center`}
         >
           {bodyTypes[bodyType]}
         </form>

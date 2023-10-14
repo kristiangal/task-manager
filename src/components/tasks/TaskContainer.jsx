@@ -19,12 +19,12 @@ const TaskContainer = ({ theme, tasks }) => {
   return (
     <>
       <div
-        className={`mx-auto pb-3 text-center w-4/5 ${theme}Theme bg-gray-500/50 drop-shadow-md rounded-lg overflow-hidden`}
+        className={`mx-auto pb-3 text-center sm:w-11/12 lg:w-8/12 ${theme}Theme bg-gray-500/50 drop-shadow-md rounded-lg overflow-hidden`}
       >
         <div
-          className={`list-header px-3 py-5 ${theme}Theme flex justify-between items-center`}
+          className={`list-header px-6 py-5 ${theme}Theme flex justify-between items-center`}
         >
-          <h1 className="font-medium text-xl mx-auto pl-14">
+          <h1 className="font-medium text-left sm:text-center text-lg sm:text-xl sm:mx-auto sm:pl-14">
             Your tasks for today
           </h1>
           <div className="icons flex">
@@ -39,7 +39,7 @@ const TaskContainer = ({ theme, tasks }) => {
             />
           </div>
         </div>
-        <div className="task-list py-3">
+        <div className="task-list max-h-96 py-3 overflow-auto">
           {tasks.length ? (
             tasks.map((task) => (
               <TaskItem task={task} key={task.id} theme={theme} />

@@ -33,7 +33,7 @@ const TaskItem = ({ theme, task }) => {
         } drop-shadow`}
       >
         <div className="main-section text-left">
-          <h3 className="text-lg font-medium flex items-center">
+          <h3 className="text-md sm:text-lg font-medium flex items-center">
             {task.isDone ? (
               <AiOutlineCheckCircle className="text-green-400 mr-2" size={30} />
             ) : task.isImportant ? (
