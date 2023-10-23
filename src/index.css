@@ -12,6 +12,10 @@
   background-color: #221e22;
 }
 
+.darkTheme input {
+  color: #221e22;
+}
+
 .darkTheme.mainBg {
   background-color: #2d2c2d;
 }
