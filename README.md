@@ -1,8 +1,14 @@
-# React + Vite
+# Simple Task manager application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web application, where you can create tasks, mark them as completed and also remove them. The application is a consisting of just a frontend, there is no database, but it can save your tasks with the help of local storage even after the user logs out. It is running in a Docker container and it is deployed on GCP. ([Link](https://task-manager-26qgsko6hq-lz.a.run.app/login))
 
-Currently, two official plugins are available:
+This application mostly got created because I wanted to try out several technologies, so I combined them in one project. The technologies I used:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Vite
+- Tailwind
+- Redux Toolkit
+- Docker
+- GCP
+
+
